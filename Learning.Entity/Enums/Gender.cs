@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Learning.Data
+namespace Learning.Entity.Enums
 {
-    public class Class1
+    public enum Gender
     {
+        Male = 1,
+        FEmale = 2
     }
 }

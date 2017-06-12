@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{339DD29A-A20F-4367-A94D-018445463CF2}</ProjectGuid>
+    <ProjectGuid>{7BDA30BA-072A-4972-9B1D-DA5210C9E7F4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Learning.Data</RootNamespace>
-    <AssemblyName>Learning.Data</AssemblyName>
+    <RootNamespace>Learning.Entity</RootNamespace>
+    <AssemblyName>Learning.Entity</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,14 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -49,29 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DBContext\LearningContext.cs" />
-    <Compile Include="DBContext\LearningContextMigrationConfiguration.cs" />
-    <Compile Include="ILearningRepository.cs" />
-    <Compile Include="LearningRepository.cs" />
-    <Compile Include="Mappers\CourseMapper.cs" />
-    <Compile Include="Mappers\EnrollmentMapper.cs" />
+    <Compile Include="Course.cs" />
+    <Compile Include="Enrollment.cs" />
+    <Compile Include="Enums\Gender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Mappers\StudentMapper.cs" />
-    <Compile Include="Mappers\SubjectMapper.cs" />
-    <Compile Include="Mappers\TutorMapper.cs" />
-    <Compile Include="Seeder\LearningDataSeeder.cs" />
+    <Compile Include="Student.cs" />
+    <Compile Include="Subject.cs" />
+    <Compile Include="Tutor.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Learning.Entity\Learning.Entity.csproj">
-      <Project>{7bda30ba-072a-4972-9b1d-da5210c9e7f4}</Project>
-      <Name>Learning.Entity</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
