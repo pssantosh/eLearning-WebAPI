@@ -9,6 +9,6 @@ namespace Learning.Entity.Enums
     public enum Gender
     {
         Male = 1,
-        FEmale = 2
+        Female = 2
     }
 }

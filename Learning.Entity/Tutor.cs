@@ -20,7 +20,6 @@ namespace Learning.Entity
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public Enums.Gender Gender { get; set; }
-
-        public ICollection<Course> Courses;
+        public ICollection<Course> Courses { get; set; }
     }
 }

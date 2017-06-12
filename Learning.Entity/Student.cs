@@ -24,6 +24,6 @@ namespace Learning.Entity
         public DateTime? RegistrationDate { get; set; }
         public DateTime? LastLoginDate { get; set; }
 
-        public ICollection<Enrollment> Enrollments;
+        public ICollection<Enrollment> Enrollments { get; set; }
     }
 }
