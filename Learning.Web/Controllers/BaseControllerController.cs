@@ -10,11 +10,11 @@ using System.Web.Http.Routing;
 
 namespace Learning.Web.Controllers
 {
-    public class BaseControllerController : ApiController
+    public class BaseApiController : ApiController
     {
         private ILearningRepository _repo;
         private ModelFactory _modelFactory;
-        public BaseControllerController(ILearningRepository repo)
+        public BaseApiController(ILearningRepository repo)
         {
             _repo = repo;
         }
