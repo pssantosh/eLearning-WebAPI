@@ -33,6 +33,11 @@ namespace Learning.Web
                 routeTemplate:  "api/courses/{courseId}/students/{userName}",
                 defaults:       new { Controller = "Enrollment", userName = RouteParameter.Optional }
             );
+            
+            var json = config.Formatters.JsonFormatter;
+            json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
+
 
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
