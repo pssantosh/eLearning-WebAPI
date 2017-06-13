@@ -6,24 +6,67 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Routing;
 
 namespace Learning.Web.Controllers
 {
     public class CoursesController : ApiController
     {
-        [HttpGet]
-        public List<Course> Get()
-        {
-            ILearningRepository repo = new LearningRepository(new LearningContext());
+        ILearningRepository repo = new LearningRepository(new LearningContext());
 
-            return repo.GetAllCourses().ToList();
+        [HttpGet]
+        public object Get(int page = 0, int pageSize = 10)
+        {
+            try
+            {
+                IQueryable<Course> query = repo.GetAllCourses().OrderBy(c => c.CourseSubject.Id);
+                var totalCnt = query.Count();
+                var totalPages = (int)Math.Ceiling((double)totalCnt / pageSize);
+
+                var urlHelper = new UrlHelper(Request);
+                var prevLink = page > 0 ? urlHelper.Link("courses", new { page = page - 1, pageSize = pageSize}) : "";
+                var nextLink = page < totalPages - 1 ? urlHelper.Link("courses", new { page = page + 1, pageSize = pageSize}) : "";
+
+                var result = query
+                                .Skip(pageSize * page)
+                                .Take(pageSize)
+                                .ToList();
+
+                return new
+                {
+                    TotalCount      =   totalCnt,
+                    TotalPages      =   totalPages,
+                    PrevPageLink    =   prevLink,
+                    NextPageLink    =   nextLink,
+                    Result          =   result
+                };
+
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
-        public Course Get(int id)
+        public IHttpActionResult Get(int id)
         {
-            ILearningRepository repo = new LearningRepository(new LearningContext());
+            try
+            {
+                var course = repo.GetCourse(id);
 
-            return repo.GetCourse(id);
+                if (course == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return Ok<Course>(course);
+                }
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message); 
+            }
         }
     }
 }
