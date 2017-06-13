@@ -47,6 +47,38 @@ namespace Learning.Web.Models
         }
         #endregion
 
+        #region Student
+        public StudentModel Create(Student student)
+        {
+            return new StudentModel()
+            {
+                Url                 =   _UrlHelper.Link("students", new { userName = student.UserName}),
+                Id                  =   student.Id,
+                Email               =   student.Email,
+                UserName            =   student.UserName,
+                FirstName           =   student.FirstName,
+                LastName            =   student.LastName,
+                DateOfBirth         =   student.DateOfBirth,
+                RegistrationDate    =   student.RegistrationDate.Value,
+                EnrollmentsCount    =   student.Enrollments.Count(),
+                Enrollments         =   student.Enrollments.Select(e => Create(e))
+            };
+        }
+
+        public StudentBaseModel CreateSummary(Student student)
+        {
+            return new StudentBaseModel()
+            {
+                Url             =   _UrlHelper.Link("students", new { userName = student.UserName }),
+                Id              =   student.Id,
+                FirstName       =   student.FirstName,
+                LastName        =   student.LastName,
+                Gender          =   student.Gender,
+                EnrollmentsCount =  student.Enrollments.Count
+            };
+        }
+        #endregion
+
         public TutorModel Create(Tutor tutor)
         {
             return new TutorModel()

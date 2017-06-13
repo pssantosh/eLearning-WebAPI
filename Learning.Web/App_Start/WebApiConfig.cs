@@ -22,6 +22,18 @@ namespace Learning.Web
                 defaults: new { Controller = "courses", id = RouteParameter.Optional }
             );
 
+            config.Routes.MapHttpRoute(
+                name: "Students",
+                routeTemplate: "api/students/{id}",
+                defaults: new { Controller = "students", id = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
+                name:           "Enrollments",
+                routeTemplate:  "api/courses/{courseId}/students/{userName}",
+                defaults:       new { Controller = "Enrollment", userName = RouteParameter.Optional }
+            );
+
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
         }

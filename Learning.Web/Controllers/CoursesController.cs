@@ -1,10 +1,9 @@
-﻿using Learning.Data;
-using Learning.Entity;
-using System;
+﻿using System;
 using System.Linq;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Routing;
+using Learning.Data;
+using Learning.Entity;
 using Learning.Web.Models;
 
 namespace Learning.Web.Controllers
