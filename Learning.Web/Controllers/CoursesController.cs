@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Routing;
 using Learning.Data;
@@ -85,7 +86,7 @@ namespace Learning.Web.Controllers
                 }
                 if (TheRepository.Insert(entity) && TheRepository.SaveAll())
                 {
-                    return Created<Course>(new Uri("courses"), entity);
+                    return Created<Course>(Request.RequestUri + entity.Id.ToString(), entity);
                 }
                 else
                 {
